@@ -3,6 +3,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends python3 make g+
 COPY compiled /usr/local/lib/node_modules/n8n
 WORKDIR /usr/local/lib/node_modules/n8n
 RUN npm rebuild sqlite3 isolated-vm && ln -s /usr/local/lib/node_modules/n8n/bin/n8n /usr/local/bin/n8n
+RUN mkdir -p /home/node/.n8n && chown -R node:node /home/node/.n8n
 USER node
 WORKDIR /home/node
 ENV NODE_ENV=production
